@@ -1,0 +1,56 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Contact Us - Leens Fashions{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 2rem;">
+    <div class="section-header">
+        <h2>Contact Us</h2>
+        <div class="divider"></div>
+    </div>
+    
+    <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+        <p style="color: var(--text-light); margin-bottom: 2rem; line-height: 1.8;">
+            We'd love to hear from you! Whether you have a question about our products, sizing, or anything else, our team is ready to help.
+        </p>
+        
+        {% if success %}
+        <div style="background: #d4edda; color: #155724; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; border: 1px solid #c3e6cb;">
+            Thank you! Your message has been sent successfully. We'll get back to you soon.
+        </div>
+        {% endif %}
+        
+        <div style="background: var(--white); padding: 2rem; border-radius: 8px; box-shadow: var(--shadow); margin-bottom: 2rem;">
+            <h3 style="color: var(--olive); margin-bottom: 1.5rem; font-weight: 500;">Send us a Message</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <div style="margin-bottom: 1rem;">
+                    <input type="text" name="name" placeholder="Your Name" required style="width: 100%; padding: 1rem; border: 1px solid var(--sage-light); border-radius: 4px; font-family: 'Montserrat', sans-serif;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <input type="email" name="email" placeholder="Your Email" required style="width: 100%; padding: 1rem; border: 1px solid var(--sage-light); border-radius: 4px; font-family: 'Montserrat', sans-serif;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <textarea name="message" placeholder="Your Message" rows="5" required style="width: 100%; padding: 1rem; border: 1px solid var(--sage-light); border-radius: 4px; font-family: 'Montserrat', sans-serif; resize: vertical;"></textarea>
+                </div>
+                <button type="submit" style="background: var(--red-accent); color: var(--white); border: none; padding: 1rem 2rem; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; width: 100%;">Send Message</button>
+            </form>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem;">
+            <div>
+                <h4 style="color: var(--olive); margin-bottom: 0.5rem; font-size: 0.9rem;">Phone / WhatsApp</h4>
+                <p style="color: var(--text-light); font-size: 0.85rem;"><a href="https://wa.me/254115665449" target="_blank" style="color: var(--sage); text-decoration: underline;">0115665449</a></p>
+            </div>
+            <div>
+                <h4 style="color: var(--olive); margin-bottom: 0.5rem; font-size: 0.9rem;">Email</h4>
+                <p style="color: var(--text-light); font-size: 0.85rem;">info@leensfashions.com</p>
+            </div>
+            <div>
+                <h4 style="color: var(--olive); margin-bottom: 0.5rem; font-size: 0.9rem;">Address</h4>
+                <p style="color: var(--text-light); font-size: 0.85rem;">Nakuru, Kenya</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

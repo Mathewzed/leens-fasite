@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Leens Fashions{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #162660;
+            --primary-light: #1e3880;
+            --secondary: #D0E6FD;
+            --secondary-light: #c4dbf7;
+            --cream: #F1E4D1;
+            --cream-light: #f5ebe0;
+            --cream-lighter: #faf7f2;
+            --white: #FFFFFF;
+            --text: #333333;
+            --text-light: #666666;
+            --accent: #C92925;
+            --shadow: 0 4px 20px rgba(22, 38, 96, 0.1);
+            --shadow-hover: 0 12px 40px rgba(22, 38, 96, 0.15);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream-lighter);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        .top-bar {
+            background: var(--primary);
+            color: var(--cream);
+            padding: 0.5rem 2rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .top-bar span { opacity: 0.8; }
+
+        header {
+            background: var(--white);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--red-accent);
+            text-transform: uppercase;
+        }
+        .header-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .header-actions a {
+            color: var(--primary-light);
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .header-actions a:hover { color: var(--red-accent); }
+
+        nav.main-nav {
+            background: var(--cream);
+            padding: 0;
+            border-bottom: 1px solid var(--secondary-light);
+        }
+        nav.main-nav ul {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            list-style: none;
+            justify-content: center;
+        }
+        nav.main-nav li { position: relative; }
+        nav.main-nav a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--primary-light);
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        nav.main-nav a:hover, nav.main-nav a.active {
+            background: var(--primary);
+            color: var(--cream);
+        }
+        nav.main-nav .collection-filter {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.8rem 1rem;
+            background: var(--white);
+            margin: 0.5rem;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        nav.main-nav .collection-filter a {
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            border-radius: 20px;
+            border: 1px solid var(--secondary-light);
+        }
+        nav.main-nav .collection-filter a:hover, 
+        nav.main-nav .collection-filter a.active {
+            background: var(--red-accent);
+            border-color: var(--red-accent);
+            color: var(--white);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.05)"/></svg>');
+            opacity: 0.5;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--cream);
+            font-size: 3.5rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            color: var(--cream);
+            opacity: 0.8;
+            font-size: 1.1rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 2rem;
+        }
+        .hero .btn {
+            display: inline-block;
+            background: var(--red-accent);
+            color: var(--white);
+            padding: 1rem 3rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .hero .btn:hover {
+            background: #a8221f;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .section-header h2 {
+            color: var(--primary-light);
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        .section-header .divider {
+            width: 60px;
+            height: 2px;
+            background: var(--secondary-light);
+            margin: 1rem auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+        .product-card {
+            background: var(--white);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        .product-image {
+            position: relative;
+            overflow: hidden;
+            height: 380px;
+            background: var(--cream-light);
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .product-card:hover .product-image img {
+            transform: scale(1.08);
+        }
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--red-accent);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .product-actions {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(48, 54, 14, 0.9);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.4s;
+        }
+        .product-card:hover .product-actions {
+            transform: translateY(0);
+        }
+        .product-actions a {
+            color: var(--cream);
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid var(--cream);
+            transition: all 0.3s;
+        }
+        .product-actions a:hover {
+            background: var(--cream);
+            color: var(--primary);
+        }
+        .product-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .product-info h3 {
+            color: var(--primary);
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+        .product-info .price {
+            color: var(--red-accent);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        .product-info .category {
+            color: var(--secondary);
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .features {
+            background: var(--cream);
+            padding: 4rem 2rem;
+        }
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        .feature-item i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .feature-item h4 {
+            color: var(--primary);
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .feature-item p {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+
+        .newsletter {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .newsletter h3 {
+            color: var(--cream);
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .newsletter p {
+            color: var(--cream);
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+        .newsletter form {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .newsletter input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            font-size: 0.9rem;
+        }
+        .newsletter button {
+            background: var(--red-accent);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .newsletter button:hover { background: #a8221f; }
+
+        footer {
+            background: var(--primary);
+            color: var(--cream);
+            padding: 4rem 2rem 2rem;
+        }
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .footer-col h4 {
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--cream);
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.8rem; }
+        .footer-col a {
+            color: var(--cream);
+            opacity: 0.7;
+            font-size: 0.85rem;
+            transition: opacity 0.3s;
+        }
+        .footer-col a:hover { opacity: 1; }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(226, 212, 185, 0.2);
+            text-align: center;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .product-detail {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        .product-detail-image {
+            position: relative;
+            height: 500px;
+            background: var(--cream-light);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .product-detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product-detail-info h1 {
+            color: var(--primary);
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        .product-detail-info .price {
+            color: var(--red-accent);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .product-detail-info .description {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        .product-detail-info .meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        .product-detail-info .meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .add-to-cart {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--cream);
+            padding: 1rem 3rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .add-to-cart:hover {
+            background: var(--red-accent);
+        }
+
+        .breadcrumb {
+            padding: 1rem 2rem;
+            background: var(--cream-light);
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        .breadcrumb a { color: var(--primary-light); }
+
+        .empty-state {
+            text-align: center;
+            padding: 6rem 2rem;
+        }
+        .empty-state h3 {
+            color: var(--primary-light);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .empty-state p { color: var(--text-light); }
+
+        @media (max-width: 1024px) {
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .top-bar { display: none; }
+            .header-content { flex-direction: column; gap: 1rem; }
+            .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; }
+            .hero h1 { font-size: 2rem; }
+            nav.main-nav ul { flex-wrap: wrap; }
+            .product-detail-grid { grid-template-columns: 1fr; }
+            .features-grid, .footer-grid { grid-template-columns: 1fr; }
+            .newsletter form { flex-direction: column; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .products-grid { grid-template-columns: 1fr; }
+            .product-image { height: 300px; }
+            .hero h1 { font-size: 1.5rem; letter-spacing: 0.2em; }
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="top-bar">
+        <span>Free shipping on orders over KSh 5000</span>
+        <span>Call: 0115665449</span>
+    </div>
+
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">Leens Fashions</a>
+            <div class="header-actions">
+                <a href="/">Home</a>
+                <a href="{% url 'contact' %}">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="/" {% if page == 'home' %}class="active"{% endif %}>Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+        <div class="collection-filter">
+            <a href="/" {% if not request.GET.collection %}class="active"{% endif %}>All</a>
+            {% for collection in collections %}
+            <a href="?collection={{ collection.id }}" {% if request.GET.collection == collection.id|stringformat:"s" %}class="active"{% endif %}>
+                {{ collection.name }}
+            </a>
+            {% endfor %}
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature-item">
+                <h4>Free Shipping</h4>
+                <p>On orders over KSh 5000</p>
+            </div>
+            <div class="feature-item">
+                <h4>Secure Payment</h4>
+                <p>100% secure checkout</p>
+            </div>
+            <div class="feature-item">
+                <h4>24/7 Support</h4>
+                <p>Dedicated support team</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <h3>Stay Updated</h3>
+        <p>Subscribe to receive news and exclusive offers</p>
+        <form id="newsletter-form">
+            <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+        <p id="newsletter-message" style="margin-top: 1rem; font-size: 0.85rem;"></p>
+    </section>
+
+    <script>
+    document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('newsletter-email').value;
+        const messageEl = document.getElementById('newsletter-message');
+        
+        fetch('{% url "subscribe" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: 'email=' + encodeURIComponent(email)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                messageEl.style.color = '#28a745';
+                messageEl.textContent = data.message;
+                document.getElementById('newsletter-email').value = '';
+            } else {
+                messageEl.style.color = '#dc3545';
+                messageEl.textContent = data.message;
+            }
+        });
+    });
+    </script>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Connect With Us</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Leens Fashions. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.product-card a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+            });
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% extends 'store/base.html' %}
+
+{% block title %}About Us - Leens Fashions{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 2rem;">
+    <div class="section-header">
+        <h2>About Us</h2>
+        <div class="divider"></div>
+    </div>
+    
+    <div style="max-width: 800px; margin: 0 auto;">
+        <div style="background: var(--white); padding: 3rem; border-radius: 8px; box-shadow: var(--shadow); margin-bottom: 2rem;">
+            <h3 style="color: var(--olive); margin-bottom: 1rem; font-weight: 500; font-size: 1.3rem;">Our Story</h3>
+            <p style="color: var(--text-light); line-height: 1.8; margin-bottom: 1.5rem;">
+                Founded with a passion for fashion, Leens Fashions has been providing quality clothing to fashion-conscious individuals for over a decade. We believe that everyone deserves to look and feel their best, regardless of age or style preference.
+            </p>
+            <p style="color: var(--text-light); line-height: 1.8;">
+                Our curated collection features the latest trends in fashion, from casual everyday wear to elegant evening attire. We work with trusted suppliers and ensure every piece meets our high standards of quality and style.
+            </p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem;">
+            <div style="background: var(--white); padding: 2rem; border-radius: 8px; text-align: center; box-shadow: var(--shadow);">
+                <h4 style="color: var(--red-accent); font-size: 2rem; margin-bottom: 0.5rem;">10+</h4>
+                <p style="color: var(--text-light); font-size: 0.9rem;">Years Experience</p>
+            </div>
+            <div style="background: var(--white); padding: 2rem; border-radius: 8px; text-align: center; box-shadow: var(--shadow);">
+                <h4 style="color: var(--red-accent); font-size: 2rem; margin-bottom: 0.5rem;">5K+</h4>
+                <p style="color: var(--text-light); font-size: 0.9rem;">Happy Customers</p>
+            </div>
+            <div style="background: var(--white); padding: 2rem; border-radius: 8px; text-align: center; box-shadow: var(--shadow);">
+                <h4 style="color: var(--red-accent); font-size: 2rem; margin-bottom: 0.5rem;">500+</h4>
+                <p style="color: var(--text-light); font-size: 0.9rem;">Products</p>
+            </div>
+        </div>
+        
+        <div style="background: var(--cream); padding: 3rem; border-radius: 8px; margin-top: 3rem; text-align: center;">
+            <h3 style="color: var(--olive); margin-bottom: 1rem;">Our Mission</h3>
+            <p style="color: var(--text-light); line-height: 1.8; max-width: 600px; margin: 0 auto;">
+                To provide stylish, high-quality fashion that empowers individuals to express their unique personality through clothing.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

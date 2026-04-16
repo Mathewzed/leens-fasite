@@ -1,0 +1,28 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Order Submitted - Leens Fashions{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 2rem;">
+    <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+        <div style="background: var(--white); padding: 3rem; border-radius: 8px; box-shadow: var(--shadow);">
+            <div style="width: 80px; height: 80px; background: var(--sage); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <h2 style="color: var(--olive); margin-bottom: 1rem;">Order Submitted!</h2>
+            <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+                Thank you for your order. We have received your request and will contact you shortly.
+            </p>
+            <div style="background: var(--cream-light); padding: 1.5rem; border-radius: 4px; margin-bottom: 2rem;">
+                <p style="color: var(--text); font-size: 0.9rem;">
+                    <strong>Product:</strong> {{ product.name }}<br>
+                    <strong>Price:</strong> KSh{{ product.price }}
+                </p>
+            </div>
+            <a href="/" style="display: inline-block; background: var(--olive); color: var(--cream); padding: 1rem 2rem; text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;">Continue Shopping</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

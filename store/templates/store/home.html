@@ -1,0 +1,44 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Leens Fashions - Premium Fashion Store{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Leens Fashions</h1>
+        <p>Discover the Latest Trends in Fashion</p>
+        <a href="#collection" class="btn">Shop Now</a>
+    </div>
+</section>
+
+<div id="collection" class="container">
+    <div class="section-header">
+        <h2>Our Collection</h2>
+        <div class="divider"></div>
+    </div>
+    <div class="products-grid">
+        {% for product in products %}
+        <a href="{% url 'product_detail' product.id %}" class="product-card" style="display: block; text-decoration: none; color: inherit;">
+            <div class="product-image">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% if product.collection %}
+                <span class="product-badge">{{ product.collection.name }}</span>
+                {% endif %}
+            </div>
+            <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p class="price">KSh{{ product.price }}</p>
+                {% if product.collection %}
+                <p class="category">{{ product.collection.name }}</p>
+                {% endif %}
+            </div>
+        </a>
+        {% empty %}
+        <div class="empty-state">
+            <h3>No products available</h3>
+            <p>Check back soon for our latest collection!</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

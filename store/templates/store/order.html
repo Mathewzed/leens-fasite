@@ -1,0 +1,50 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Order {{ product.name }} - Leens Fashions{% endblock %}
+
+{% block content %}
+<div class="container" style="padding-top: 2rem;">
+    <div class="section-header">
+        <h2>Order Now</h2>
+        <div class="divider"></div>
+    </div>
+    
+    <div style="max-width: 600px; margin: 0 auto;">
+        <div style="background: var(--white); padding: 2rem; border-radius: 8px; box-shadow: var(--shadow); margin-bottom: 2rem;">
+            <div style="display: flex; gap: 1.5rem; align-items: center; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--cream);">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 100px; height: 100px; object-fit: cover; border-radius: 4px;">
+                <div>
+                    <h3 style="color: var(--olive); margin-bottom: 0.5rem;">{{ product.name }}</h3>
+                    <p style="color: var(--red-accent); font-size: 1.2rem; font-weight: 600;">KSh{{ product.price }}</p>
+                </div>
+            </div>
+            
+            <h3 style="color: var(--olive); margin-bottom: 1.5rem; font-weight: 500;">Your Details</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text); font-size: 0.9rem;">Full Name *</label>
+                    <input type="text" name="customer_name" required style="width: 100%; padding: 1rem; border: 1px solid var(--sage-light); border-radius: 4px; font-family: 'Montserrat', sans-serif;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text); font-size: 0.9rem;">Phone Number *</label>
+                    <input type="tel" name="phone" required placeholder="e.g. 0115665449" style="width: 100%; padding: 1rem; border: 1px solid var(--sage-light); border-radius: 4px; font-family: 'Montserrat', sans-serif;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text); font-size: 0.9rem;">Location/Address *</label>
+                    <input type="text" name="location" required placeholder="e.g. Nakuru, Kenya" style="width: 100%; padding: 1rem; border: 1px solid var(--sage-light); border-radius: 4px; font-family: 'Montserrat', sans-serif;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text); font-size: 0.9rem;">Additional Notes</label>
+                    <textarea name="notes" rows="3" placeholder="Any special instructions..." style="width: 100%; padding: 1rem; border: 1px solid var(--sage-light); border-radius: 4px; font-family: 'Montserrat', sans-serif; resize: vertical;"></textarea>
+                </div>
+                <button type="submit" style="background: var(--red-accent); color: var(--white); border: none; padding: 1rem 2rem; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; width: 100%;">Submit Order</button>
+            </form>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="{% url 'product_detail' product.id %}" style="color: var(--sage); text-decoration: underline;">&larr; Back to product</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
