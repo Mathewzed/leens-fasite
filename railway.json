@@ -1,5 +1,5 @@
 {
   "deploy": {
-    "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn fashion_site.wsgi"
+    "startCommand": "python manage.py migrate && python manage.py createsuperuser --username admin --email admin@leens.com --noinput || true && gunicorn fashion_site.wsgi"
   }
 }
