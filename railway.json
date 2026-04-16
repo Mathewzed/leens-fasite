@@ -1,0 +1,9 @@
+{
+  "build": {
+    "builder": "NIXPACKS_PYTHON_DJANGO",
+    "buildCommand": "pip install -r requirements.txt"
+  },
+  "start": {
+    "run": "python manage.py migrate && gunicorn fashion_site.wsgi"
+  }
+}
