@@ -1,1 +1,0 @@
-web: python manage.py migrate && gunicorn fashion_site.wsgi --bind 0.0.0.0:$PORT
