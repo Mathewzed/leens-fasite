@@ -1,5 +1,5 @@
 {
   "deploy": {
-    "startCommand": "python manage.py migrate && gunicorn fashion_site.wsgi --bind 0.0.0.0:$PORT"
+    "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn fashion_site.wsgi"
   }
 }
